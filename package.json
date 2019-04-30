@@ -1,0 +1,8 @@
+{
+        "name": "Cortana",
+        "version": "1.00.00.01",
+        "description": "BOT for DiscordServer",
+        "main": "cortana.js",
+        "author": "sparrdrem",
+        "dependencies": {}
+}
