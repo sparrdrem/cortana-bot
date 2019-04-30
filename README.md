@@ -13,7 +13,7 @@ To add Cortana to your server, you're going to need the following requirements:
 
 You will need to create a New Application under the Discord Developer Portal. Click [here](https://discordapp.com/developers/applications/me) to create the application. Name the BOT whatever you want and upload a pretty picture for it too.
 
-<img src="screenshot1.png" alt="Cortana Example" width="50%" />
+<img src="screenshot1.png" alt="Cortana Example" width="82%" />
 
 Then you'll need to convert your app into a BOT. Click the Bot section and choose the new app you just created under Build-a-Bot. Edit any options you wish to apply to the BOT (public use/permissions/etc.).
 
