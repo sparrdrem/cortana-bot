@@ -36,8 +36,7 @@ Your BOT's token can be found under the Bot section. Copy the token that is gene
 Open a Terminal Shell or Command Prompt (CTRL+ALT+T for Linux/BSD systems and CTRL+SHIFT+F10 for Windows) and change directory to the Cortana BOT source. You will need to install the following packages using Node.js Package Manager (NPM) by running these commands:
 
 ```
-npm install discord.io winston -save
-npm install https://github.com/woor/discord.io/tarball/gateway_v6
+npm install discord.js
 ```
 
 To start the Cortana BOT
