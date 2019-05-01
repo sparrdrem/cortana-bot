@@ -25,7 +25,7 @@ If you wish to modify the BOT's permissions, be sure to click Copy before moving
 https://discordapp.com/oauth2/authorize?&client_id= <ClientID> &scope=bot&permissions= <0>
 ```
 
-You will need to replace the ` <0>` with the number that your permissions generated (if you did not set up any permissions, just set the value to 0) and also replace ` <ClientID> ` with the client ID (the client ID can be found in General Information). Be sure to remove all spaces in the link you copied. You will be prompted if whether or not to allow the BOT onto the server and which server to add the BOT to. Select the appropriate server for the BOT payload and click Accept. You can close the tab once the process is completed.
+You will need to replace the `<0>` with the number that your permissions generated (if you did not set up any permissions, just set the value to 0) and also replace `<ClientID>` with the client ID (the client ID can be found in General Information). Be sure to remove all spaces in the link you copied. You will be prompted if whether or not to allow the BOT onto the server and which server to add the BOT to. Select the appropriate server for the BOT payload and click Accept. You can close the tab once the process is completed.
 
 ### Step 3: Generating the BOT token
 
