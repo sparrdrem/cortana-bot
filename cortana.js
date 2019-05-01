@@ -32,6 +32,13 @@ bot.on('message', function (user, userID, channelID, message, evt) {
                                     message: 'Cortana BOT for Discord. Version 1.00.00.01. Created by SparrDrem, 2019-30-04 10:19:25:00'
                             })
                     break;
+                    // Hello World payload
+                    case 'test':
+                            bot.sendMessage({
+                                    to: channelID,
+                                    message: 'Hello World'
+                            })
+                    break;
                 }
         }
 });
