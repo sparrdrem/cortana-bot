@@ -1,0 +1,3 @@
+This is a txt file designed to test out api menus for future milestones:
+Link 1: https://sparrdrem.github.io/cortana-bot
+Link 2: https://sparrdrem.github.io/gencode
