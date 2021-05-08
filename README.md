@@ -39,7 +39,7 @@ And Cortana is activated. The readme.txt file lists all commands currently avail
 
 ## Adding commands to BOT
 
-To add commands, you will need to edit the class file `Commands.cs`. You will need to provide the name of the command and give the command a fuction. For an example of how to create a new command, see `example-script.js`.
+To add commands, you will need to edit the class file `Commands.cs`. You will need to provide the name of the command and give the command a fuction. For an example of how to create a new command, see `Example.cs`.
 
 ## Downloading the BOT
 
