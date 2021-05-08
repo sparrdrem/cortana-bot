@@ -6,8 +6,8 @@ Cortana bot for Sam&amp;Yoe Group Discord Server
 To add Cortana to your server, you're going to need the following requirements:
 
 * Your Discord Server (not just anyone's discord but yours.)
-* Node.js and the NPM manager
-* Some fundamental knowledge in JavaScript coding
+* Visual Studio 2019 minimum (see bulding the bot section for details.)
+* Some fundamental knowledge in C# coding and usage of Visual Studio
 
 ### Step 1: Setting up the BOT
 
@@ -29,27 +29,17 @@ You will need to replace the `<0>` with the number that your permissions generat
 
 ### Step 3: Generating the BOT token
 
-Your BOT's token can be found under the Bot section. Copy the token that is generated for your BOT and you will paste it in place of `$dummy_token$` in the file `auth.json`. Be careful with this token that is generated as this key has no encryption/security at all and anybody with the key can modify the BOT to do destructive things to your server.
+Your BOT's token can be found under the Bot section. Copy the token that is generated for your BOT and you will paste it where the token line is commented out which must be uncommented once pasted in the file `Program.cs`. Be careful with this token that is generated as this key has no encryption/security at all and anybody with the key can modify the BOT to do destructive things to your server.
 
-### Step 4: Running the Payload
+### Step 4: Building the Bot
 
-Open a Terminal Shell or Command Prompt (CTRL+ALT+T for Linux/BSD systems and CTRL+SHIFT+F10 for Windows) and change directory to the Cortana BOT source. You will need to install the following packages using Node.js Package Manager (NPM) by running these commands:
-
-```
-npm install discord.js
-```
-
-To start the Cortana BOT
-
-```
-node cortana.js
-```
+You will need a copy of Windows with Visual Studio 2019 (any sku works) installed along with .Net Desktop Development and the .Net Framework 4.8 system installed. Once the app is built, the application is `cortana-bot.exe` in the directory `bin/Release` (or `bin/Debug` if set to Debug). It is important the files built are not shared as the token is exposed.
 
 And Cortana is activated. The readme.txt file lists all commands currently available to use with Cortana.
 
 ## Adding commands to BOT
 
-To add commands, you will need to edit the main JS script `cortana.js`. You will need to provide the name of the command and give the command a fuction. For an example of how to create a new command, see `example-script.js`.
+To add commands, you will need to edit the class file `Commands.cs`. You will need to provide the name of the command and give the command a fuction. For an example of how to create a new command, see `example-script.js`.
 
 ## Downloading the BOT
 
