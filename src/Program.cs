@@ -71,7 +71,7 @@ namespace cortana_bot
 
             await _client.SetGameAsync(game);
 
-            Console.WriteLine($"Logged in as {_client.CurrentUser.Id}");
+            Console.WriteLine("Bot logged in successfully.");
 
             await Task.Delay(-1);
         }

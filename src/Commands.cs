@@ -46,10 +46,24 @@ namespace cortana_bot
             testEmbed.WithAuthor("SparrDrem", "https://avatars0.githubusercontent.com/u/40704566?s=200&v=4", "https://avatars0.githubusercontent.com/u/40704566?s=200&v=4");
             testEmbed.WithDescription("dummy");
             testEmbed.WithThumbnailUrl("https://avatars0.githubusercontent.com/u/40704566?s=200&v=4");
-            testEmbed.AddField("Test Menu", null, false);
+            testEmbed.AddField("Test Menu", false);
             testEmbed.WithImageUrl("https://avatars0.githubusercontent.com/u/40704566?s=200&v=4");
             testEmbed.WithFooter("This is a test embed menu, if this menu appears this means it is a success.", "https://avatars0.githubusercontent.com/u/40704566?s=200&v=4");
             await Context.Channel.SendMessageAsync("", false, testEmbed.Build());
+        }
+
+        [Command("help")]
+        [Summary("")]
+        private async Task Help()
+        {
+            EmbedBuilder helpEmbed = new EmbedBuilder();
+            helpEmbed.WithAuthor(Context.User);
+            helpEmbed.WithColor(Color.Blue);
+            helpEmbed.WithTitle("Cortana Bot");
+            helpEmbed.AddField("`c!awdbios`", "Prints the AWARD Bios screen in text.", true);
+            helpEmbed.AddField("`c!ver`", "Prints the version of the bot.", true);
+
+            await Context.Channel.SendMessageAsync("", false, helpEmbed.Build());
         }
     }
 }
