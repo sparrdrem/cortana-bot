@@ -14,18 +14,26 @@
 
 using Discord;
 using Discord.Commands;
+using System.IO;
+using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace cortana_bot
 {
     public class Commands : ModuleBase<SocketCommandContext>
     {
-        public string version = "1.00.00.03";
+        public string version = "1.00.00.04";
+
         [Command("ver")]
         [Summary("")]
         private async Task Ver()
         {
-            await Context.Channel.SendMessageAsync($"Cortana BOT for Discord\nVersion {version}.\nCreated by SparrDrem, 2021-08-05 18:01:09.9");
+            var buildInfo = Application.StartupPath + "\\buildinfo.txt";
+            var reader = string.Join("", File.ReadAllLines(buildInfo, Encoding.UTF8));
+
+            await Context.Channel.SendMessageAsync($"Cortana BOT for Discord\nVersion {version}.\nCreated by SparrDrem, {reader}");
         }
 
         [Command("awdbios")]
@@ -50,6 +58,13 @@ namespace cortana_bot
             testEmbed.WithImageUrl("https://avatars0.githubusercontent.com/u/40704566?s=200&v=4");
             testEmbed.WithFooter("This is a test embed menu, if this menu appears this means it is a success.", "https://avatars0.githubusercontent.com/u/40704566?s=200&v=4");
             await Context.Channel.SendMessageAsync("", false, testEmbed.Build());
+        }
+
+        [Command("src")]
+        [Summary("")]
+        private async Task Src()
+        {
+            await Context.Channel.SendMessageAsync($":link:: https://sparrdrem.github.io/cortana-bot");
         }
 
         [Command("help")]
