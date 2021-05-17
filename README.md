@@ -43,7 +43,7 @@ To add commands, you will need to edit the class file `Commands.cs`. You will ne
 
 ## Downloading the BOT
 
-[Latest](https://github.com/sparrdrem/cortana-bot/archive/master.zip)
+[Latest](https://github.com/sparrdrem/cortana-bot/archive/heads/csharp.zip)
 
 ### Other BOTs
 
