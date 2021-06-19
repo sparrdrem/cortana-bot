@@ -29,6 +29,7 @@ namespace cortana_bot
     {
         static void Main(string[] args) => new Program().RunBot().GetAwaiter().GetResult();
 
+        // We start by creating basic variables that we will reference throughout the script.
         public static DiscordSocketClient _client;
         private static CommandService _commands;
         private IServiceProvider _services;
@@ -37,18 +38,23 @@ namespace cortana_bot
 
         public async Task RunBot()
         {
-            _client = new DiscordSocketClient();
+            // We create definitions of the variables.
+            _client = new DiscordSocketClient(new DiscordSocketConfig{
+                ExclusiveBulkDelete = true
+            }); // ExclusiveBulkDelete is set to suppress events when a bulk delete occurs.
             _commands = new CommandService();
 
             _services = new ServiceCollection().AddSingleton(_client).AddSingleton(_commands).BuildServiceProvider();
 
+            // We will now export our bot's config to a json file. This is for simplicity purposes so that the file can be edited for later use.
+            // Note: You can just remove the if statement and just hardcore define properties if you prefer to make it more secure.
             if (!File.Exists("config.json"))
             {
                 config = new BotConfig()
                 {
-                    prefix = "c!",
-                    //token = "",
-                    game = "c!help"
+                    Prefix = "c!",        // Set your own prefix here, avoid common prefixes such as "!", "<", or "."
+                    Token = "",           // You must provide your own token
+                    Game = "c!help"       // It is recommended to keep this as the prefix for people to know what its prefix is
                 };
                 File.WriteAllText("config.json", JsonConvert.SerializeObject(config, Formatting.Indented));
             }
@@ -57,10 +63,11 @@ namespace cortana_bot
                 config = JsonConvert.DeserializeObject<BotConfig>(File.ReadAllText("config.json"));
             }
 
-            string game = config.game;
+            string game = config.Game;
 
-            string botToken = config.token;
+            string botToken = config.Token;
 
+            // This is where the actual bot login process begins. If an error occurs the console should not print "Bot logged in successfully."
             _client.Log += Log;
 
             await RegisterCommandsAsync();
@@ -78,6 +85,7 @@ namespace cortana_bot
 
         private async Task RegisterCommandsAsync()
         {
+            // This allows the bot to look at messages sent any time one is sent.
             _client.MessageReceived += HandleCommandAsync;
 
             await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), null);
@@ -85,14 +93,14 @@ namespace cortana_bot
 
         private Task Log(LogMessage msg)
         {
+            // This method simply logs warnings/errors/messages created by the bot.
             Console.WriteLine(msg);
             return Task.CompletedTask;
         }
 
         private async Task HandleCommandAsync(SocketMessage msg)
         {
-            SocketGuild server = ((SocketGuildChannel)msg.Channel).Guild;
-
+            // This method reads messages sent that the bot can see, and handles them accordingly if it contains a ping at the beginning of the message or the bot's prefix.
             string messageLower = msg.Content;
             var message = msg as SocketUserMessage;
             if (message is null || message.Author.IsBot) return;
@@ -112,8 +120,9 @@ namespace cortana_bot
     
     class BotConfig
     {
-        public string token { get; set; }
-        public string prefix { get; set; }
-        public string game { get; set; }
+        // Class is used for the configuration to initialize the bot as seen above.
+        public string Token { get; set; }
+        public string Prefix { get; set; }
+        public string Game { get; set; }
     }
 }
