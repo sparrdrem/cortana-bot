@@ -1,11 +1,11 @@
 The following NuGet packages need to be installed:
 
-Discord.Net (>= 2.3.1)
-Discord.Net.Commands (>= 2.3.1)
-Discord.Net.Core (>= 2.3.1)
-Discord.Net.Rest (>= 2.3.1)
-Discord.Net.Webhook (>= 2.3.1)
-Discord.Net.WebSocket (>= 2.3.1)
+Discord.Net (>= 2.4.0)
+Discord.Net.Commands (>= 2.4.0)
+Discord.Net.Core (>= 2.4.0)
+Discord.Net.Rest (>= 2.4.0)
+Discord.Net.Webhook (>= 2.4.0)
+Discord.Net.WebSocket (>= 2.4.0)
 Microsoft.Bcl.AsyncInterfaces (>= 5.0.0)
 Microsoft.Extensions.DependencyInjection (>= 5.0.1)
 Microsoft.Extensions.DependencyInjection.Abstractions (>= 5.0.0)
