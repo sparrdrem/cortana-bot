@@ -53,6 +53,7 @@ namespace cortana_bot
                 config = new BotConfig()
                 {
                     Prefix = "c!",        // Set your own prefix here, avoid common prefixes such as "!", "<", or "."
+                    //Prefix2 = "C!",       // Duplicate of config.Prefix, 
                     Token = "",           // You must provide your own token
                     Game = "c!help"       // It is recommended to keep this as the prefix for people to know what its prefix is
                 };
@@ -105,7 +106,9 @@ namespace cortana_bot
             var message = msg as SocketUserMessage;
             if (message is null || message.Author.IsBot) return;
             int argumentPos = 0;
-            if (message.HasStringPrefix(config.prefix, ref argumentPos) || message.HasMentionPrefix(_client.CurrentUser, ref argumentPos))
+            if (message.HasStringPrefix(config.Prefix, ref argumentPos) || message.HasMentionPrefix(_client.CurrentUser, ref argumentPos))
+            //if (message.HasStringPrefix(config.Prefix, ref argumentPos) || message.HasStringPrefix(config.Prefix2, ref argumentPos) || message.HasMentionPrefix(_client.CurrentUser, ref argumentPos))
+            // Uncomment the above line if more than one prefix is being used.
             {
                 var context = new SocketCommandContext(_client, message);
                 var result = await _commands.ExecuteAsync(context, argumentPos, _services);
@@ -123,6 +126,7 @@ namespace cortana_bot
         // Class is used for the configuration to initialize the bot as seen above.
         public string Token { get; set; }
         public string Prefix { get; set; }
+        //public string Prefix2 { get; set; }           // Duplicate of prefix to add a second prefix, being used programatically as "C!" since the bot doesn't accept ToLower for the prefix.
         public string Game { get; set; }
     }
 }
