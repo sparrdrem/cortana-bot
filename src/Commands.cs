@@ -30,7 +30,6 @@ namespace cortana_bot
         public string version = "1.00.00.04";
 
         [Command("ver")]
-        [Summary("")]
         private async Task Ver()
         {
             // This method displays the version of the bot
@@ -51,7 +50,6 @@ namespace cortana_bot
         }
 
         [Command("awdbios")]
-        [Summary("")]
         private async Task AwdBios()
         {
             // Just a fun command that prints the AWARD Modular BIOS in a text block.
@@ -75,7 +73,6 @@ namespace cortana_bot
         }
 
         [Command("test")]
-        [Summary("")]
         private async Task Test()
         {
             // Just a test embed that exists for whatever reason, has no purpose to exist imo.
@@ -93,7 +90,6 @@ namespace cortana_bot
         }
 
         [Command("src")]
-        [Summary("")]
         private async Task Src()
         {
             // Source code link
@@ -101,7 +97,6 @@ namespace cortana_bot
         }
 
         [Command("help")]
-        [Summary("")]
         private async Task Help()
         {
             // This is the help section. You can create a help group if you want to create help sections for each command (see "example.cs" for proper setup).
