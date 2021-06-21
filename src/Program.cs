@@ -19,7 +19,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using System;
 using System.IO;
-using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Threading.Tasks;
 
@@ -27,7 +26,7 @@ namespace cortana_bot
 {
     class Program
     {
-        static void Main(string[] args) => new Program().RunBot().GetAwaiter().GetResult();
+        static void Main() => new Program().RunBot().GetAwaiter().GetResult();
 
         // We start by creating basic variables that we will reference throughout the script.
         public static DiscordSocketClient _client;
@@ -102,9 +101,7 @@ namespace cortana_bot
         private async Task HandleCommandAsync(SocketMessage msg)
         {
             // This method reads messages sent that the bot can see, and handles them accordingly if it contains a ping at the beginning of the message or the bot's prefix.
-            string messageLower = msg.Content;
-            var message = msg as SocketUserMessage;
-            if (message is null || message.Author.IsBot) return;
+            if (!(msg is SocketUserMessage message) || message.Author.IsBot) return;
             int argumentPos = 0;
             if (message.HasStringPrefix(config.Prefix, ref argumentPos) || message.HasMentionPrefix(_client.CurrentUser, ref argumentPos))
             //if (message.HasStringPrefix(config.Prefix, ref argumentPos) || message.HasStringPrefix(config.Prefix2, ref argumentPos) || message.HasMentionPrefix(_client.CurrentUser, ref argumentPos))

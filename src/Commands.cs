@@ -15,9 +15,8 @@
 using Discord;
 using Discord.Commands;
 using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -27,7 +26,21 @@ namespace cortana_bot
     public class Commands : ModuleBase<SocketCommandContext>
     {
         // Placeholder for when I find out how to actually read a PE EXE's version
-        public string version = "1.00.00.04";
+        public string version = "1.00.00.05";
+
+        private string BotUptime()
+        {
+            // This string method calculates the amount of time the bot has been active and subtracts that from the current time and converts it to string so that the value is returnable.
+            string uptime = (DateTime.UtcNow - Process.GetCurrentProcess().StartTime.ToUniversalTime()).ToString();
+            return uptime.Remove(8);        // Removing 8 characters from the end of the string because we want the returned value to not go smaller than seconds.
+        }
+
+        [Command("uptime")]
+        private async Task Uptime()
+        {
+            // Since the method we are calling returns a string we need convert the string into a message.
+            await Context.Channel.SendMessageAsync($"{BotUptime()}");
+        }
 
         [Command("ver")]
         private async Task Ver()
@@ -69,6 +82,11 @@ namespace cortana_bot
             try
             {
                 await Context.User.SendMessageAsync($"Your code is {random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}{random.Next(0, 9)}");
+                await Context.Message.AddReactionAsync(check);
+            }
+            catch
+            {
+                await Context.Channel.SendMessageAsync("Error: Unable to DM the user the code. Please enable the option to allow me to DM users.");
             }
         }
 
@@ -107,7 +125,9 @@ namespace cortana_bot
             helpEmbed.AddField("`c!awdbios`", "Prints the AWARD Bios screen in text.", true);
             helpEmbed.AddField("`c!gencode`", "DMs you a 16 numbered randomized string (requires permissions to dm the user).", true);
             helpEmbed.AddField("`c!src`", "Sends the link to the source code for Cortana BOT.", true);
+            helpEmbed.AddField("`c!uptime`", "Sends the amount of time Cortana has been active.", true);
             helpEmbed.AddField("`c!ver`", "Prints the version of the bot.", true);
+            helpEmbed.WithCurrentTimestamp();
 
             await Context.Channel.SendMessageAsync("", false, helpEmbed.Build());
         }
