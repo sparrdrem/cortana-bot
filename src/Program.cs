@@ -94,8 +94,15 @@ namespace cortana_bot
         private Task Log(LogMessage msg)
         {
             // This method simply logs warnings/errors/messages created by the bot.
-            Console.WriteLine(msg);
-            return Task.CompletedTask;
+            switch (msg.Exception)
+            {
+                case GatewayReconnectException gre:    // This is for when the bot must reset its connection after a while.
+                    Console.WriteLine($"{(DateTime.UtcNow).ToString().Remove(8)} Gateway     Server requested a reconnect.");
+                    return Task.CompletedTask;
+                default:
+                    Console.WriteLine(msg);            // Normal logging.
+                    return Task.CompletedTask;
+            }
         }
 
         private async Task HandleCommandAsync(SocketMessage msg)
