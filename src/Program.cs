@@ -97,7 +97,7 @@ namespace cortana_bot
             switch (msg.Exception)
             {
                 case GatewayReconnectException gre:    // This is for when the bot must reset its connection after a while.
-                    Console.WriteLine($"{(DateTime.UtcNow).ToString().Remove(8)} Gateway     Server requested a reconnect.");
+                    Console.WriteLine($"{(DateTime.Now).ToString("HH:mm:ss")} Gateway     Server requested a reconnect.");
                     return Task.CompletedTask;
                 default:
                     Console.WriteLine(msg);            // Normal logging.

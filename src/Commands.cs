@@ -25,8 +25,9 @@ namespace cortana_bot
 {
     public class Commands : ModuleBase<SocketCommandContext>
     {
-        // Placeholder for when I find out how to actually read a PE EXE's version
-        public string version = "1.00.00.05";
+        // I don't remember if this is a .ToString() conversion but I'll fix it later. If it spawns an error just throw the .ToString() after FileVersion
+        // This is what we use to grab a PE EXE's file version.
+        public string version = FileVersionInfo.GetVersionInfo(Application.StartupPath + "\\cortana-bot.exe").FileVersion;
 
         private string BotUptime()
         {
