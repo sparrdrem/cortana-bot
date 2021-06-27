@@ -14,6 +14,7 @@
 
 using Discord;
 using Discord.Commands;
+using Discord.Net;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
@@ -94,10 +95,15 @@ namespace cortana_bot
         private Task Log(LogMessage msg)
         {
             // This method simply logs warnings/errors/messages created by the bot.
+            string logTime = (DateTime.Now).ToString("HH:mm:ss");  // Gets the current time and converts it to string.
+
             switch (msg.Exception)
             {
                 case GatewayReconnectException gre:    // This is for when the bot must reset its connection after a while.
-                    Console.WriteLine($"{(DateTime.Now).ToString("HH:mm:ss")} Gateway     Server requested a reconnect.");
+                    Console.WriteLine($"{logTime} Gateway     Server requested a reconnect.");
+                    return Task.CompletedTask;
+                case HttpException he:                 // This is for handling when the bot encounters HTTP code issues on Discord.
+                    Console.WriteLine($"{logTime} Gateway     Unable to send message: Missing Permissions in channel.");        // Placeholder until I figure out a way to throw unique errors.
                     return Task.CompletedTask;
                 default:
                     Console.WriteLine(msg);            // Normal logging.
