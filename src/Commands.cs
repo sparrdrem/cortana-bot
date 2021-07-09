@@ -33,7 +33,7 @@ namespace cortana_bot
         {
             // This string method calculates the amount of time the bot has been active and subtracts that from the current time and converts it to string so that the value is returnable.
             TimeSpan uptime = DateTime.UtcNow - Process.GetCurrentProcess().StartTime.ToUniversalTime();
-            return uptime.ToString(@"hh\:mm\:ss");        // Removing 8 characters from the end of the string because we want the returned value to not go smaller than seconds.
+            return uptime.ToString(@"d\.hh\:mm\:ss");        // Removing 8 characters from the end of the string because we want the returned value to not go smaller than seconds.
         }
 
         [Command("uptime")]
